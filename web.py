@@ -87,6 +87,8 @@ def main():
         
         hypothesis = st.selectbox("Выберите гипотезу", hypotheses)
         
+        
+        # Выбор гипотезы
         if hypothesis == 'T Test':
             st.markdown(f"<h3 align=\"center\">{hypothesis} гипотеза</h3>", unsafe_allow_html=True)
             t_test(data)
@@ -132,9 +134,9 @@ def u_test(data):
                         data[data[compare] == fileds_in_compare[1]][critery])
             st.write(f'p-value для {critery}: {res.pvalue / 2:.4f}')
    
-def chi_square(data):
+   
 
-    
+def chi_square(data):    
     columns = st.selectbox("Выберите columns столбец для анализа:", data.columns)
     values = st.selectbox("Выберите values столбец для анализа:", data.columns)
     cross_tab = pd.crosstab(data[columns], data[values], margins = True)
