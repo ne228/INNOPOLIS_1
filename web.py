@@ -4,8 +4,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-
-
 from scipy.stats import ttest_ind, chi2_contingency, mannwhitneyu
 import io
 
@@ -36,13 +34,12 @@ def run_categorial(column, data, color):
     
 
 def run(column, data, color):
-    st.write(f"{column}")
     numeric = pd.to_numeric(data[column], errors='coerce')
     if (numeric.count() == 0 or data[column].nunique() < 10):
-        st.write(f"CATEGORIAL {column}")
+        st.write(f"Колонка: {column} CATEGORIAL")
         run_categorial(column, data, color)
     else:
-        st.write(f"NUMERIC {column}")
+        st.write(f"Колонка: {column} NUMERIC")
         run_numeric(column, data, color)
         
 def show_info(data):
@@ -65,7 +62,7 @@ def show_info(data):
     
 def main():
     # Заголовок приложения
-    st.title("Загрузка и обработка файлов в Streamlit")
+    st.title("Анализ распределения данных")
 
     # Загрузка файла
     uploaded_file = st.file_uploader("Выберите файл (CSV)", type=["csv"])
